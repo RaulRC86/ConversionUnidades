@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Unidades</title>
+</head>
+<body>
+    <h1>Conversor de Unidades</h1>
+    
+    <button onclick="convertirDistancias()">Convertir Distancias</button>
+    <button onclick="convertirTemperatura()">Convertir Temperatura</button>
+    <button onclick="convertirTiempo()">Convertir Tiempo</button>
+
+    <div id="resultados"></div>
+
+    <script>
+        // Función para mostrar resultados
+        function mostrarResultado(texto) {
+            const resultados = document.getElementById('resultados');
+            const p = document.createElement('p');
+            p.textContent = texto;
+            resultados.appendChild(p);
+        }
+
+        // Conversión de Distancias
+        function convertirDistancias() {
+            const millaAKM = 1.6;
+
+            let millas = parseFloat(prompt("Ingresa la cantidad de millas a convertir: "));
+            if (!isNaN(millas)) {
+                let kilómetros = millas * millaAKM;
+                mostrarResultado(`Son ${kilómetros.toFixed(2)} kilómetros`);
+            } else {
+                mostrarResultado("Por favor, ingresa un número válido para las millas.");
+            }
+        }
+
+        // Conversión de Temperatura
+        function convertirTemperatura() {
+            let kelvin = parseFloat(prompt("Ingresa la temperatura en Kelvin: "));
+            if (!isNaN(kelvin)) {
+                let celsius = kelvin - 273.15;
+                mostrarResultado(`La temperatura en Celsius es: ${celsius.toFixed(2)} grados`);
+            } else {
+                mostrarResultado("Por favor, ingresa un número válido para la temperatura en Kelvin.");
+            }
+        }
+
+        // Conversión de Tiempo
+        function convertirTiempo() {
+            let años = parseFloat(prompt("Ingresa la cantidad de años: "));
+            if (!isNaN(años)) {
+                let meses = años * 12;
+                let semanas = años * 52.1775; // Usar el promedio más preciso para semanas en un año
+                let días = años * 365.25; // Considerando años bisiestos
+                let horas = días * 24;
+                let minutos = horas * 60;
+                let segundos = minutos * 60;
+
+                mostrarResultado(`La cantidad de meses es: ${meses.toFixed(2)}`);
+                mostrarResultado(`La cantidad de semanas es: ${semanas.toFixed(2)}`);
+                mostrarResultado(`La cantidad de días es: ${días.toFixed(2)}`);
+                mostrarResultado(`La cantidad de horas es: ${horas.toFixed(2)}`);
+                mostrarResultado(`La cantidad de minutos es: ${minutos.toFixed(2)}`);
+                mostrarResultado(`La cantidad de segundos es: ${segundos.toFixed(2)}`);
+            } else {
+                mostrarResultado("Por favor, ingresa un número válido para la cantidad de años.");
+            }
+        }
+    </script>
+</body>
+</html>
